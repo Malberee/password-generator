@@ -1,5 +1,3 @@
-import React from 'react'
-
 import Container from './Container'
 import OutputPassword from './OutputPassword'
 import Options from './Options'

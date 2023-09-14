@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { CopyIcon } from '../Icons'
 import {
   OutputPasswordWrapper,
