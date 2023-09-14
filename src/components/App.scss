@@ -1,29 +1,14 @@
-@import '/node_modules/modern-normalize/modern-normalize.css';
-
 body {
   height: 100vh;
 
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  background-color: #191c2b;
+  font-family: 'JetBrains Mono', monospace;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  color: #ffffff;
+  background-color: #14131b;
+  background: linear-gradient(#14131b, #09080d);
 }
 
-p {
-  color: white;
-  font-size: 30px;
-}
-
-a {
-  color: #f8312f;
-  text-decoration: none;
-
-  transition: color 250ms linear;
-
-  &:hover {
-    text-decoration-style: #1c1c1c;
-    color: #008463;
-  }
+h1 {
+  font-size: 18px;
+  color: #807c92;
 }

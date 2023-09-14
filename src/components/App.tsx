@@ -4,13 +4,7 @@ const App = () => {
 
   return (
     <>
-      <p>
-        🍉 by{' '}
-        <a href="https://github.com/Malberee" target="_blank" rel="noreferrer">
-          Malberee
-        </a>
-        .
-      </p>
+      <h1>Password Generator</h1>
     </>
   )
 }
