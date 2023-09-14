@@ -10,6 +10,11 @@ html {
   box-sizing: inherit;
 }
 
+::selection {
+  background-color: #a3ffae;
+  color: #191820;
+}
+
 p,
 h1,
 h2,
@@ -43,3 +48,4 @@ img {
   height: 100%;
   padding: 0 16px;
 }
+

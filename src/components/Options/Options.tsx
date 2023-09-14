@@ -3,6 +3,8 @@ import { useState } from 'react'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
 
+import { ArrowIcon } from '../Icons'
+
 import {
   OptionsWrapper,
   OptionsInner,
@@ -12,6 +14,10 @@ import {
   Label,
   Checkbox,
   CustomCheckbox,
+  GenerateBtn,
+  PasswordStrength,
+  Strength,
+  LevelItem,
 } from './Options.styled'
 
 const Options = () => {
@@ -29,8 +35,8 @@ const Options = () => {
       </OptionsInner>
       <Slider
         value={sliderValue}
-        min={0}
-        max={20}
+        min={5}
+        max={15}
         onChange={handleChangeSlider}
         trackStyle={{
           backgroundColor: '#a3ffae',
@@ -81,6 +87,21 @@ const Options = () => {
           </Label>
         </li>
       </CheckboxGroup>
+
+      <PasswordStrength>
+        <Text>Strength</Text>
+        <Strength>
+          STRONG
+          <LevelItem />
+          <LevelItem />
+          <LevelItem />
+          <LevelItem />
+        </Strength>
+      </PasswordStrength>
+
+      <GenerateBtn>
+        Generate <ArrowIcon width={12} />
+      </GenerateBtn>
     </OptionsWrapper>
   )
 }

@@ -7,17 +7,29 @@ export const OutputPasswordWrapper = styled.div`
 
   width: 100%;
   padding: 24px 32px;
-  margin-top: 16px;
 
   background-color: #23222a;
 `
 
 export const Password = styled.p`
   font-size: 32px;
+  font-weight: 500;
 `
 
 export const CopyBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+
   background-color: transparent;
   color: #a3ffae;
-  border: 0;
+
+  &:hover svg {
+    fill: #ffffff;
+  }
+
+  svg {
+    transition: fill 100ms linear;
+  }
 `
