@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 import Container from './Container'
 import OutputPassword from './OutputPassword'

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
@@ -48,6 +49,14 @@ const Options = ({ setGeneratedPassword }: IOptionsProps) => {
   }
 
   const getStrengthPassword = () => {
+    const countTrueOptions = Object.values(options).filter(
+      (value) => value === true
+    ).length
+
+    if (countTrueOptions < 1) {
+      return 'too weak!'
+    }
+
     if (passwordLength >= 13) {
       return 'strong'
     }
@@ -57,6 +66,7 @@ const Options = ({ setGeneratedPassword }: IOptionsProps) => {
     if (passwordLength >= 7) {
       return 'weak'
     }
+
     return 'too weak!'
   }
 
@@ -68,9 +78,18 @@ const Options = ({ setGeneratedPassword }: IOptionsProps) => {
   }
 
   const handleGeneratePassword = () => {
-    const password: string = generatePassword(options, passwordLength)
+    const countTrueOptions = Object.values(options).filter(
+      (value) => value === true
+    ).length
 
-    setGeneratedPassword(password)
+    if (countTrueOptions > 0) {
+      const password: string = generatePassword(options, passwordLength)
+
+      setGeneratedPassword(password)
+
+      return
+    }
+    toast.error('Please select at least one option', { autoClose: 2000 })
   }
 
   return (
@@ -109,8 +128,8 @@ const Options = ({ setGeneratedPassword }: IOptionsProps) => {
             <Checkbox
               type="checkbox"
               name="upperCase"
-              onChange={(e) => handleOptions(e.target.name)}
               checked={options.upperCase}
+              onChange={(e) => handleOptions(e.target.name)}
             />
             <CustomCheckbox />
             Include Uppercase Letters
@@ -121,8 +140,8 @@ const Options = ({ setGeneratedPassword }: IOptionsProps) => {
             <Checkbox
               type="checkbox"
               name="lowerCase"
-              onChange={(e) => handleOptions(e.target.name)}
               checked={options.lowerCase}
+              onChange={(e) => handleOptions(e.target.name)}
             />
             <CustomCheckbox />
             Include Lowercase Letters
@@ -133,8 +152,8 @@ const Options = ({ setGeneratedPassword }: IOptionsProps) => {
             <Checkbox
               type="checkbox"
               name="numbers"
-              onChange={(e) => handleOptions(e.target.name)}
               checked={options.numbers}
+              onChange={(e) => handleOptions(e.target.name)}
             />
             <CustomCheckbox />
             Include Numbers
@@ -145,8 +164,8 @@ const Options = ({ setGeneratedPassword }: IOptionsProps) => {
             <Checkbox
               type="checkbox"
               name="symbols"
-              onChange={(e) => handleOptions(e.target.name)}
               checked={options.symbols}
+              onChange={(e) => handleOptions(e.target.name)}
             />
             <CustomCheckbox />
             Include Symbols
