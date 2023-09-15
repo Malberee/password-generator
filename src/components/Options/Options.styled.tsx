@@ -129,27 +129,27 @@ export const Strength = styled.p`
 `
 
 interface IStyledLevelItemProps {
-  passwordLength: number
-  empty?: boolean
+  passwordlength: number
+  empty?: 'true' | 'false'
 }
 
 export const LevelItem = styled.span<IStyledLevelItemProps>(
-  ({ passwordLength, empty }) => {
+  ({ passwordlength, empty }) => {
     let color: string = '#f74b4b'
-    let border: string = 'transparent'
+    let borderColor: string = 'transparent'
 
-    if (passwordLength >= 7) {
+    if (passwordlength >= 7) {
       color = '#fb7a56'
     }
-    if (passwordLength >= 9) {
+    if (passwordlength >= 9) {
       color = '#f8cb63'
     }
-    if (passwordLength >= 13) {
+    if (passwordlength >= 13) {
       color = '#a3ffae'
     }
-    if (empty) {
+    if (empty === 'false') {
       color = 'transparent'
-      border = '#ffffff'
+      borderColor = '#ffffff'
     }
 
     return css`
@@ -158,7 +158,7 @@ export const LevelItem = styled.span<IStyledLevelItemProps>(
       height: 28px;
 
       background-color: ${color};
-      border: solid 2px ${border};
+      border: solid 2px ${borderColor};
 
       margin-left: 8px;
 

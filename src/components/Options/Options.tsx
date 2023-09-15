@@ -105,18 +105,18 @@ const Options = () => {
         <Text>Strength</Text>
         <Strength>
           {getStrengthPassword()}
-          <LevelItem passwordLength={passwordLength} />
+          <LevelItem passwordlength={passwordLength} />
           <LevelItem
-            passwordLength={passwordLength}
-            empty={passwordLength < 7}
+            passwordlength={passwordLength}
+            empty={passwordLength < 7 ? 'false' : 'true'}
           />
           <LevelItem
-            passwordLength={passwordLength}
-            empty={passwordLength < 9}
+            passwordlength={passwordLength}
+            empty={passwordLength < 9 ? 'false' : 'true'}
           />
           <LevelItem
-            passwordLength={passwordLength}
-            empty={passwordLength < 13}
+            passwordlength={passwordLength}
+            empty={passwordLength < 13 ? 'false' : 'true'}
           />
         </Strength>
       </PasswordStrength>
