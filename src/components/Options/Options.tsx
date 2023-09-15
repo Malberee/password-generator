@@ -49,14 +49,13 @@ const Options = ({ setGeneratedPassword }: IOptionsProps) => {
   }
 
   const getStrengthPassword = () => {
-    const countTrueOptions = Object.values(options).filter(
+    const countTrueOptions: number = Object.values(options).filter(
       (value) => value === true
     ).length
 
     if (countTrueOptions < 1) {
       return 'too weak!'
     }
-
     if (passwordLength >= 13) {
       return 'strong'
     }
