@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { ToastContainer } from 'react-toastify'
 
 import Container from './Container'
 import OutputPassword from './OutputPassword'
@@ -10,11 +11,20 @@ const App = () => {
   const [generatedPassword, setGeneratedPassword] = useState('')
 
   return (
-    <Container>
-      <h1>Password Generator</h1>
-      <OutputPassword password={generatedPassword} />
-      <Options setGeneratedPassword={setGeneratedPassword}  />
-    </Container>
+    <>
+      <Container>
+        <h1>Password Generator</h1>
+        <OutputPassword password={generatedPassword} />
+        <Options setGeneratedPassword={setGeneratedPassword} />
+      </Container>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={500}
+        hideProgressBar
+        closeOnClick
+        theme="dark"
+      />
+    </>
   )
 }
 

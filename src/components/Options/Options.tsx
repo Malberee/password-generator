@@ -61,7 +61,6 @@ const Options = ({ setGeneratedPassword }: IOptionsProps) => {
   }
 
   const handleOptions = (option: string) => {
-    console.log(option)
     setOptions((prevState: Options) => ({
       ...prevState,
       [option]: !prevState[option],

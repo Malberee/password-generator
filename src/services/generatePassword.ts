@@ -26,6 +26,5 @@ export const generatePassword = (options: Options, length: number) => {
     password += chars[array[i] % chars.length]
   }
 
-  console.log(password)
   return password
 }
