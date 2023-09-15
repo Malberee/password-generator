@@ -14,8 +14,9 @@ export const OutputPasswordWrapper = styled.div`
 export const Password = styled.p`
   font-size: 32px;
   font-weight: 500;
+  line-height: 1px;
 
-  color: #807c92
+  color: #807c92;
 `
 
 export const CopyBtn = styled.button`
@@ -26,6 +27,15 @@ export const CopyBtn = styled.button`
 
   background-color: transparent;
   color: #a3ffae;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+
+  &:disabled:hover svg {
+    fill: #a3ffae;
+  }
 
   &:hover svg {
     fill: #ffffff;

@@ -13,7 +13,7 @@ const OutputPassword = ({ password }: IOutputPasswordProps) => {
   return (
     <OutputPasswordWrapper>
       <Password>{password}</Password>
-      <CopyBtn>
+      <CopyBtn disabled={Boolean(!password)}>
         <CopyIcon width={24} />
       </CopyBtn>
     </OutputPasswordWrapper>
