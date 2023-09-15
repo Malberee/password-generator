@@ -5,6 +5,8 @@ import 'rc-slider/assets/index.css'
 
 import { ArrowIcon } from '../Icons'
 
+import { generatePassword } from '../../services/generatePassword'
+
 import {
   OptionsWrapper,
   OptionsInner,
@@ -20,8 +22,26 @@ import {
   LevelItem,
 } from './Options.styled'
 
-const Options = () => {
+interface IOptionsProps {
+  setGeneratedPassword: (password: string) => void
+}
+
+type Options = {
+  upperCase: boolean
+  lowerCase: boolean
+  numbers: boolean
+  symbols: boolean
+  [key: string]: boolean
+}
+
+const Options = ({ setGeneratedPassword }: IOptionsProps) => {
   const [passwordLength, setPasswordLength] = useState<number>(10)
+  const [options, setOptions] = useState<Options>({
+    upperCase: true,
+    lowerCase: true,
+    numbers: true,
+    symbols: true,
+  })
 
   const handleChangeLength = (value: number | number[]) => {
     setPasswordLength(value as number)
@@ -38,6 +58,20 @@ const Options = () => {
       return 'weak'
     }
     return 'too weak!'
+  }
+
+  const handleOptions = (option: string) => {
+    console.log(option)
+    setOptions((prevState: Options) => ({
+      ...prevState,
+      [option]: !prevState[option],
+    }))
+  }
+
+  const handleGeneratePassword = () => {
+    const password: string = generatePassword(options, passwordLength)
+
+    setGeneratedPassword(password)
   }
 
   return (
@@ -73,28 +107,48 @@ const Options = () => {
       <CheckboxGroup>
         <li>
           <Label>
-            <Checkbox type="checkbox" />
+            <Checkbox
+              type="checkbox"
+              name="upperCase"
+              onChange={(e) => handleOptions(e.target.name)}
+              checked={options.upperCase}
+            />
             <CustomCheckbox />
             Include Uppercase Letters
           </Label>
         </li>
         <li>
           <Label>
-            <Checkbox type="checkbox" />
+            <Checkbox
+              type="checkbox"
+              name="lowerCase"
+              onChange={(e) => handleOptions(e.target.name)}
+              checked={options.lowerCase}
+            />
             <CustomCheckbox />
             Include Lowercase Letters
           </Label>
         </li>
         <li>
           <Label>
-            <Checkbox type="checkbox" />
+            <Checkbox
+              type="checkbox"
+              name="numbers"
+              onChange={(e) => handleOptions(e.target.name)}
+              checked={options.numbers}
+            />
             <CustomCheckbox />
             Include Numbers
           </Label>
         </li>
         <li>
           <Label>
-            <Checkbox type="checkbox" />
+            <Checkbox
+              type="checkbox"
+              name="symbols"
+              onChange={(e) => handleOptions(e.target.name)}
+              checked={options.symbols}
+            />
             <CustomCheckbox />
             Include Symbols
           </Label>
@@ -121,7 +175,7 @@ const Options = () => {
         </Strength>
       </PasswordStrength>
 
-      <GenerateBtn>
+      <GenerateBtn type="button" onClick={handleGeneratePassword}>
         Generate <ArrowIcon width={12} />
       </GenerateBtn>
     </OptionsWrapper>
