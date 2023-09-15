@@ -14,7 +14,7 @@ export const OutputPasswordWrapper = styled.div`
 export const Password = styled.p`
   font-size: 32px;
   font-weight: 500;
-  line-height: 1px;
+  line-height: 1;
 
   color: #807c92;
 `
