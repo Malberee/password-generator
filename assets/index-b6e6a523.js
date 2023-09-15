@@ -60,7 +60,7 @@ Error generating stack: `+l.message+`
 `,U0=Te.p`
   font-size: 32px;
   font-weight: 500;
-  line-height: 1px;
+  line-height: 1;
 
   color: #807c92;
 `,H0=Te.button`
