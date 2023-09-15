@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const OptionsWrapper = styled.div`
   padding: 24px 32px;
@@ -128,16 +128,45 @@ export const Strength = styled.p`
   color: #e7e6eb;
 `
 
-export const LevelItem = styled.span`
-  display: inline-block;
-  width: 10px;
-  height: 28px;
+interface IStyledLevelItemProps {
+  passwordLength: number
+  empty?: boolean
+}
 
-  background-color: #a3ffae;
+export const LevelItem = styled.span<IStyledLevelItemProps>(
+  ({ passwordLength, empty }) => {
+    let color: string = '#f74b4b'
+    let border: string = 'transparent'
 
-  margin-left: 8px;
+    if (passwordLength >= 7) {
+      color = '#fb7a56'
+    }
+    if (passwordLength >= 9) {
+      color = '#f8cb63'
+    }
+    if (passwordLength >= 13) {
+      color = '#a3ffae'
+    }
+    if (empty) {
+      color = 'transparent'
+      border = '#ffffff'
+    }
 
-  &:first-child {
-    margin-left: 16px;
+    return css`
+      display: inline-block;
+      width: 10px;
+      height: 28px;
+
+      background-color: ${color};
+      border: solid 2px ${border};
+
+      margin-left: 8px;
+
+      transition: background-color 100ms linear, border-color 100ms linear;
+
+      &:first-child {
+        margin-left: 16px;
+      }
+    `
   }
-`
+)

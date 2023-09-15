@@ -21,23 +21,36 @@ import {
 } from './Options.styled'
 
 const Options = () => {
-  const [sliderValue, setSliderValue] = useState<number>(10)
+  const [passwordLength, setPasswordLength] = useState<number>(10)
 
-  const handleChangeSlider = (value: number | number[]) => {
-    setSliderValue(value as number)
+  const handleChangeLength = (value: number | number[]) => {
+    setPasswordLength(value as number)
+  }
+
+  const getStrengthPassword = () => {
+    if (passwordLength >= 13) {
+      return 'strong'
+    }
+    if (passwordLength >= 9) {
+      return 'medium'
+    }
+    if (passwordLength >= 7) {
+      return 'weak'
+    }
+    return 'too weak!'
   }
 
   return (
     <OptionsWrapper>
       <OptionsInner>
         <Text>Character Length</Text>
-        <SliderValue>{sliderValue}</SliderValue>
+        <SliderValue>{passwordLength}</SliderValue>
       </OptionsInner>
       <Slider
-        value={sliderValue}
+        value={passwordLength}
         min={5}
         max={15}
-        onChange={handleChangeSlider}
+        onChange={handleChangeLength}
         trackStyle={{
           backgroundColor: '#a3ffae',
           borderRadius: 0,
@@ -91,11 +104,20 @@ const Options = () => {
       <PasswordStrength>
         <Text>Strength</Text>
         <Strength>
-          STRONG
-          <LevelItem />
-          <LevelItem />
-          <LevelItem />
-          <LevelItem />
+          {getStrengthPassword()}
+          <LevelItem passwordLength={passwordLength} />
+          <LevelItem
+            passwordLength={passwordLength}
+            empty={passwordLength < 7}
+          />
+          <LevelItem
+            passwordLength={passwordLength}
+            empty={passwordLength < 9}
+          />
+          <LevelItem
+            passwordLength={passwordLength}
+            empty={passwordLength < 13}
+          />
         </Strength>
       </PasswordStrength>
 
