@@ -129,25 +129,25 @@ export const Strength = styled.p`
 `
 
 interface IStyledLevelItemProps {
-  passwordlength: number
-  empty?: 'true' | 'false'
+  complexity: string
+  empty: 'true' | 'false'
 }
 
 export const LevelItem = styled.span<IStyledLevelItemProps>(
-  ({ passwordlength, empty }) => {
+  ({ complexity, empty }) => {
     let color: string = '#f74b4b'
     let borderColor: string = 'transparent'
 
-    if (passwordlength >= 7) {
+    if (complexity === 'weak') {
       color = '#fb7a56'
     }
-    if (passwordlength >= 9) {
+    if (complexity === 'medium') {
       color = '#f8cb63'
     }
-    if (passwordlength >= 13) {
+    if (complexity === 'strong') {
       color = '#a3ffae'
     }
-    if (empty === 'false') {
+    if (empty === 'true') {
       color = 'transparent'
       borderColor = '#ffffff'
     }

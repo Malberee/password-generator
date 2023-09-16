@@ -44,29 +44,42 @@ const Options = ({ setGeneratedPassword }: IOptionsProps) => {
     symbols: true,
   })
 
+  const complexities = ['too weak!', 'weak', 'medium', 'strong']
+
   const handleChangeLength = (value: number | number[]) => {
     setPasswordLength(value as number)
   }
 
   const getStrengthPassword = () => {
-    const countTrueOptions: number = Object.values(options).filter(
-      (value) => value === true
+    let complexity: number = 0
+
+    const countDisabledOptions: number = Object.values(options).filter(
+      (value) => value === false
     ).length
 
-    if (countTrueOptions < 1) {
-      return 'too weak!'
-    }
-    if (passwordLength >= 13) {
-      return 'strong'
+    if (passwordLength >= 7) {
+      complexity += 1
     }
     if (passwordLength >= 9) {
-      return 'medium'
+      complexity += 1
     }
-    if (passwordLength >= 7) {
-      return 'weak'
+    if (passwordLength >= 13) {
+      complexity += 1
     }
 
-    return 'too weak!'
+    complexity -= countDisabledOptions
+
+    if (complexity < 1) {
+      return 'too weak!'
+    }
+    if (complexity === 1) {
+      return 'weak'
+    }
+    if (complexity === 2) {
+      return 'medium'
+    }
+
+    return 'strong'
   }
 
   const handleOptions = (option: string) => {
@@ -176,18 +189,29 @@ const Options = ({ setGeneratedPassword }: IOptionsProps) => {
         <Text>Strength</Text>
         <Strength>
           {getStrengthPassword()}
-          <LevelItem passwordlength={passwordLength} />
+          <LevelItem complexity={getStrengthPassword()} empty="false" />
           <LevelItem
-            passwordlength={passwordLength}
-            empty={passwordLength < 7 ? 'false' : 'true'}
+            complexity={getStrengthPassword()}
+            empty={
+              getStrengthPassword() === 'weak' ||
+              getStrengthPassword() === 'medium' ||
+              getStrengthPassword() === 'strong'
+                ? 'false'
+                : 'true'
+            }
           />
           <LevelItem
-            passwordlength={passwordLength}
-            empty={passwordLength < 9 ? 'false' : 'true'}
+            complexity={getStrengthPassword()}
+            empty={
+              getStrengthPassword() === 'medium' ||
+              getStrengthPassword() === 'strong'
+                ? 'false'
+                : 'true'
+            }
           />
           <LevelItem
-            passwordlength={passwordLength}
-            empty={passwordLength < 13 ? 'false' : 'true'}
+            complexity={getStrengthPassword()}
+            empty={getStrengthPassword() === 'strong' ? 'false' : 'true'}
           />
         </Strength>
       </PasswordStrength>
