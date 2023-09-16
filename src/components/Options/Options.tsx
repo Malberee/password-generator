@@ -44,8 +44,6 @@ const Options = ({ setGeneratedPassword }: IOptionsProps) => {
     symbols: true,
   })
 
-  const complexities = ['too weak!', 'weak', 'medium', 'strong']
-
   const handleChangeLength = (value: number | number[]) => {
     setPasswordLength(value as number)
   }
